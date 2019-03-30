@@ -1,6 +1,6 @@
 //All required modules to make app work correctly
-const axios = require("axios");
 const dotenv = require("dotenv").config();
+const axios = require("axios");
 const keys = require("./keys.js");
 const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
@@ -24,9 +24,12 @@ function songFinder() {
     spotify.search({
             type: 'track',
             query: Search,
-            limit: 5,
+            limit: 1,
         }).then(function (response) {
-            console.log(response, null, 2);
+            console.log("Artist/s: " + response.tracks.items[0].album.artists[0].name);
+            console.log("Song Title: " + response.tracks.items[0].name);
+            console.log("Preview URL: " + response.tracks.items[0].preview_url);
+            console.log("Album: " + response.tracks.items[0].album.name);
         })
         .catch(function(err) {
             console.log(err);
