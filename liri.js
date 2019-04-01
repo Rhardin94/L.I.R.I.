@@ -4,6 +4,7 @@ const axios = require("axios");
 const keys = require("./keys.js");
 const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
+const moment = require("moment");
 //Capturing console input to determine which part of app to run
 let apiType = process.argv[2];
 let Search = process.argv.slice(3).join(" ");
@@ -20,6 +21,8 @@ switch (apiType) {
         Search += "+";
         movieFinder()
         break;
+    case "concert-this":
+        bandFinder();
 };
 //Function to search spotify
 function songFinder() {
@@ -60,4 +63,16 @@ console.log("Language: " + response.data.Language);
 console.log("Plot: " + response.data.Plot);
 console.log("Actors: " + response.data.Actors);
     });
+}
+//Function to search bandsintown
+function bandFinder() {
+    queryURL = "https://rest.bandsintown.com/artists/" + Search + "/events?app_id=codingbootcamp";
+    axios.get(queryURL)
+    .then(function(response) {
+        for (let i = 0; i < response.data.length; i++) {
+        console.log("Venue: " + response.data[i].venue.name +  "\nLocation: " + response.data[i].venue.city + "/" + response.data[i].venue.country + "\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n");
+       // console.log(response.data.venue.city + "/" + response.data.venue.country);
+        //console.log(moment(response.data.datetime).format("MM/DD/YYYY"));
+        }
+    })
 }
