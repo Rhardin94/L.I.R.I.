@@ -5,12 +5,18 @@ const keys = require("./keys.js");
 const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
 const moment = require("moment");
+const fs = require("fs");
 //Capturing console input to determine which part of app to run
 let apiType = process.argv[2];
 let Search = process.argv.slice(3).join(" ");
-if (Search === "") {
-    Search = "mr nobody";
-}
+let commandLog = process.argv;
+//appends each command to the log.txt file
+fs.appendFile("log.txt", commandLog + " ", function (err) {
+    if (err) {
+        return console.log(err);
+    }
+})
+
 //Switch used to determine which API to interact with
 switch (apiType) {
     case "spotify-this-song":
@@ -18,11 +24,26 @@ switch (apiType) {
         songFinder();
         break;
     case "movie-this":
+        if (Search === "") {
+            Search = "mr nobody";
+        }
         Search += "+";
         movieFinder()
         break;
     case "concert-this":
         bandFinder();
+        break;
+    case "do-what-it-says":
+        fs.readFile("random.txt", "utf8", function (err, data) {
+            if (err) {
+                return console.log(err);
+            }
+            data = data.split(",");
+            //apiType = data[0];
+            Search = data[1];
+            Search += "+";
+            songFinder();
+        })
 };
 //Function to search spotify
 function songFinder() {
@@ -32,47 +53,52 @@ function songFinder() {
             query: Search,
             limit: 1,
         }).then(function (response) {
-            console.log("Artist/s: " + response.tracks.items[0].album.artists[0].name);
-            console.log("Song Title: " + response.tracks.items[0].name);
-            console.log("Preview URL: " + response.tracks.items[0].preview_url);
-            console.log("Album: " + response.tracks.items[0].album.name);
+            console.log(
+                "\nArtist/s: " + response.tracks.items[0].album.artists[0].name +
+                "\nSong Title: " + response.tracks.items[0].name +
+                "\nPreview URL: " + response.tracks.items[0].preview_url +
+                "\nAlbum: " + response.tracks.items[0].album.name
+            );
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.log(err);
         });
-    };
+};
 //Function to search omdb
 function movieFinder() {
     queryURL = "https://www.omdbapi.com/?t=" + Search + "&y=&plot=short&apikey=trilogy";
     axios.get(queryURL)
-    .then(function(response) {
-/*Title of the movie.
-* Year the movie came out.
-* IMDB Rating of the movie.
-* Rotten Tomatoes Rating of the movie.
-* Country where the movie was produced.
-* Language of the movie.
-* Plot of the movie.
-* Actors in the movie.*/
-console.log("Title: " + response.data.Title);
-console.log("Release Year: " + response.data.Released);
-console.log("IMDB Rating: " + response.data.Ratings[0].Value);
-console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
-console.log("Country/s Produced In: " + response.data.Country);
-console.log("Language: " + response.data.Language);
-console.log("Plot: " + response.data.Plot);
-console.log("Actors: " + response.data.Actors);
-    });
+        .then(function (response) {
+            /*Title of the movie.
+             * Year the movie came out.
+             * IMDB Rating of the movie.
+             * Rotten Tomatoes Rating of the movie.
+             * Country where the movie was produced.
+             * Language of the movie.
+             * Plot of the movie.
+             * Actors in the movie.*/
+            console.log(
+                "\nTitle: " + response.data.Title +
+                "\nRelease Year: " + response.data.Released +
+                "\nIMDB Rating: " + response.data.Ratings[0].Value +
+                "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value +
+                "\nCountry/s Produced In: " + response.data.Country +
+                "\nLanguage: " + response.data.Language +
+                "\nPlot: " + response.data.Plot +
+                "\nActors: " + response.data.Actors);
+        });
 }
 //Function to search bandsintown
 function bandFinder() {
     queryURL = "https://rest.bandsintown.com/artists/" + Search + "/events?app_id=codingbootcamp";
     axios.get(queryURL)
-    .then(function(response) {
-        for (let i = 0; i < response.data.length; i++) {
-        console.log("Venue: " + response.data[i].venue.name +  "\nLocation: " + response.data[i].venue.city + "/" + response.data[i].venue.country + "\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n");
-       // console.log(response.data.venue.city + "/" + response.data.venue.country);
-        //console.log(moment(response.data.datetime).format("MM/DD/YYYY"));
-        }
-    })
+        .then(function (response) {
+            for (let i = 0; i < response.data.length; i++) {
+                console.log("\n" + Search.toUpperCase() + " Events: " +
+                    "\nVenue: " + response.data[i].venue.name +
+                    "\nLocation: " + response.data[i].venue.city + "/" + response.data[i].venue.country +
+                    "\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n"
+                );
+            }
+        })
 }
