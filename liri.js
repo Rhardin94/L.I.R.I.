@@ -6,6 +6,33 @@ const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
 const moment = require("moment");
 const fs = require("fs");
+const inquirer = require("inquirer");
+//Testing inquirer only runs if the user doesn't input an apiType
+let count = 0;
+function liriHelper() {
+  if (!process.argv[2]) {
+    inquirer
+      .prompt([{
+        name: "whatAPI",
+        message: "Welcome to Liri! What can I help you with today?",
+        type: "list",
+        choices: ["Look up a movie", "Look up a song", "Look up a concert", "Dealer's Choice"]
+      }]).then(function (response) {
+        count++;
+        switch (response.whatAPI) {
+          case "Look up a movie":
+            return console.log("Type this: 'node liri.js + movie-this + the movie of your choice (minus the +)");
+          case "Look up a song":
+            return console.log("Type this: node liri.js + spotify-this-song + the song of your choice (minus the +)");
+          case "Look up a concert":
+            return console.log("Type this: node liri.js + concert-this + the artist of your choice (minus the +)");
+          case "Dealer's Choice":
+            return console.log("Type this: node liri.js + do-what-it-says (minus the +)");
+        }
+      })
+  }
+}
+liriHelper();
 //Capturing console input to determine which part of app to run
 let apiType = process.argv[2];
 let Search = process.argv.slice(3).join(" ");
@@ -91,13 +118,13 @@ function movieFinder() {
         "\nLanguage: " + response.data.Language +
         "\nPlot: " + response.data.Plot +
         "\nActors: " + response.data.Actors
-        );
-        if (Search === "mr nobody") {
-          Search = "";
-        }
-        fs.appendFile("log.txt",
+      );
+      if (Search === "mr nobody") {
+        Search = "";
+      }
+      fs.appendFile("log.txt",
         "\n------\n" +
-        "\n" + "node liri.js " + apiType + " " + Search + 
+        "\n" + "node liri.js " + apiType + " " + Search +
         "\nTitle: " + response.data.Title +
         "\nRelease Year: " + response.data.Released +
         "\nIMDB Rating: " + response.data.Ratings[0].Value +
@@ -105,8 +132,8 @@ function movieFinder() {
         "\nCountry/s Produced In: " + response.data.Country +
         "\nLanguage: " + response.data.Language +
         "\nPlot: " + response.data.Plot +
-        "\nActors: " + response.data.Actors, 
-        function(err) {
+        "\nActors: " + response.data.Actors,
+        function (err) {
           if (err) {
             return console.log(err);
           }
