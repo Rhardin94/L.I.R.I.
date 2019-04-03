@@ -40,7 +40,6 @@ let commandLog = process.argv;
 //Switch used to determine which API to interact with
 switch (apiType) {
   case "spotify-this-song":
-    Search += " ";
     songFinder();
     break;
   case "movie-this":
@@ -61,7 +60,6 @@ switch (apiType) {
       data = data.split(",");
       //apiType = data[0];
       Search = data[1];
-      Search += "+";
       songFinder();
     })
 };
@@ -79,6 +77,10 @@ function songFinder() {
         "\nPreview URL: " + response.tracks.items[0].preview_url +
         "\nAlbum: " + response.tracks.items[0].album.name
       );
+      //Clears search for logging purposes
+      if (apiType === "do-what-it-says") {
+        Search = "";
+      }
       //appends each command to the log.txt file
       fs.appendFile("log.txt",
         "\n------\n" +
@@ -119,12 +121,13 @@ function movieFinder() {
         "\nPlot: " + response.data.Plot +
         "\nActors: " + response.data.Actors
       );
+      //Clears search for logging purposes
       if (Search === "mr nobody") {
         Search = "";
       }
       fs.appendFile("log.txt",
         "\n------\n" +
-        "\n" + "node liri.js " + apiType + " " + Search +
+        "node liri.js " + apiType + " " + Search +
         "\nTitle: " + response.data.Title +
         "\nRelease Year: " + response.data.Released +
         "\nIMDB Rating: " + response.data.Ratings[0].Value +
@@ -145,12 +148,27 @@ function bandFinder() {
   queryURL = "https://rest.bandsintown.com/artists/" + Search + "/events?app_id=codingbootcamp";
   axios.get(queryURL)
     .then(function (response) {
+      console.log("\n" + Search.toUpperCase() + " has " + response.data.length + " upcoming events:");
+      fs.appendFile("log.txt", "\n-----\n" + "node liri.js " + apiType + " " + Search + "\n" + Search.toUpperCase() + " has " + response.data.length + " upcoming events:", function(err) {
+        if (err) {
+          return;
+        }
+      })
       for (let i = 0; i < response.data.length; i++) {
-        console.log("\n" + Search.toUpperCase() + " Events: " +
+        console.log(
           "\nVenue: " + response.data[i].venue.name +
           "\nLocation: " + response.data[i].venue.city + "/" + response.data[i].venue.country +
           "\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYYY") + "\n"
         );
+        fs.appendFile("log.txt",
+          "\n" +
+          "\nVenue: " + response.data[i].venue.name +
+          "\nLocation: " + response.data[i].venue.city + "/" + response.data[i].venue.country +
+          "\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYYY"), function(err) {
+            if (err) {
+              return console.log(err);
+            } 
+        });
       }
     })
 }
