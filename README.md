@@ -48,6 +48,7 @@ After running a search, L.I.R.I logs the search command and the returned data in
 ![previous commands and outputs](/assets/screenshots/logs.jpg)
 
 ## Tech
+* [Node.js](https://nodejs.org/en/)
 * [Axios](https://www.npmjs.com/package/axios)
 * [FS](https://www.npmjs.com/package/fs)
 * [Dotenv](https://www.npmjs.com/package/dotenv)
