@@ -5,6 +5,7 @@ L.I.R.I. is a node-based cli app that functions as a mock Siri search engine. Wh
 * Movies
 * Songs
 * Concerts
+
 Once the user decides which search to run, L.I.R.I returns the approriate data in the console and logs the output in log.txt.
 
 ## Setup
