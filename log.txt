@@ -138,3 +138,196 @@ Country/s Produced In: Belgium, Germany, Canada, France, USA, UK
 Language: English, Mohawk
 Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
 Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+------
+
+node liri.js do-what-it-says 
+Artist/s: Backstreet Boys
+Song Title: I Want It That Way
+Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=669ae60c37b34d2cb002a89a72b0cb70
+Album: The Hits--Chapter One
+------
+
+node liri.js do-what-it-says 
+Artist/s: Backstreet Boys
+Song Title: I Want It That Way
+Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=669ae60c37b34d2cb002a89a72b0cb70
+Album: The Hits--Chapter One
+------
+node liri.js movie-this django unchained
+Title: Django Unchained
+Release Year: 25 Dec 2012
+IMDB Rating: 8.4/10
+Rotten Tomatoes Rating: 86%
+Country/s Produced In: USA
+Language: English, German, French, Italian
+Plot: With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.
+Actors: Jamie Foxx, Christoph Waltz, Leonardo DiCaprio, Kerry Washington
+------
+node liri.js movie-this django unchained
+Title: Django Unchained
+Release Year: 25 Dec 2012
+IMDB Rating: 8.4/10
+Rotten Tomatoes Rating: 86%
+Country/s Produced In: USA
+Language: English, German, French, Italian
+Plot: With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.
+Actors: Jamie Foxx, Christoph Waltz, Leonardo DiCaprio, Kerry Washington
+------
+
+node liri.js spotify-this-song told you so
+Artist/s: Paramore
+Song Title: Told You So
+Preview URL: https://p.scdn.co/mp3-preview/73164a32d6afd4d1f0e72174da8795ce6e5f1c81?cid=669ae60c37b34d2cb002a89a72b0cb70
+Album: After Laughter
+-----
+node liri.js concert-this panic at the disco
+PANIC AT THE DISCO has 2 upcoming events:
+
+Venue: Music Midtown (September 14th-15th, Single Day TBA)
+Location: /
+Date: 09/14/2019
+
+Venue: undefined
+Location: /
+Date: 10/03/2019
+-----
+node liri.js concert-this paramore
+PARAMORE has 0 upcoming events:
+-----
+node liri.js concert-this jason mraz
+JASON MRAZ has 33 upcoming events:
+
+Venue: The Colosseum at Caesars Windsor
+Location: Windsor/Canada
+Date: 07/03/2019
+
+Venue: The Avalon Ballroom Theatre At Niagara Fallsview Casino Resort
+Location: Niagara Falls/Canada
+Date: 07/04/2019
+
+Venue: The Avalon Ballroom Theatre At Niagara Fallsview Casino Resort
+Location: Niagara Falls/Canada
+Date: 07/05/2019
+
+Venue: Summerfest
+Location: Milwaukee/United States
+Date: 07/07/2019
+
+Venue: Hulu Theater at Madison Square Garden
+Location: New York/United States
+Date: 07/10/2019
+
+Venue: undefined
+Location: /
+Date: 07/12/2019
+
+Venue: Basilica of St Mary
+Location: Minneapolis/United States
+Date: 07/13/2019
+
+Venue: The Stir Cove at Harrahs
+Location: Council Bluffs/United States
+Date: 07/14/2019
+
+Venue: undefined
+Location: /
+Date: 07/24/2019
+
+Venue: undefined
+Location: /
+Date: 07/26/2019
+
+Venue: undefined
+Location: /
+Date: 07/28/2019
+
+Venue: 中野サンプラザホール
+Location: 中野区/日本
+Date: 07/29/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Modesto/United States
+Date: 10/23/2019
+
+Venue: undefined
+Location: /
+Date: 08/04/2019
+
+Venue: The Fillmore
+Location: San Francisco/United States
+Date: 08/17/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Paso Robles/United States
+Date: 10/26/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Santa Cruz/United States
+Date: 10/25/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Portland/United States
+Date: 11/01/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Santa Rosa/United States
+Date: 10/27/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Eugene/United States
+Date: 10/30/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Missoula/United States
+Date: 11/03/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: /
+Date: 11/02/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Edmonton/Canada
+Date: 11/05/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Vancouver/Canada
+Date: 11/08/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Seattle/United States
+Date: 11/09/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Seattle/United States
+Date: 11/10/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Toronto/Canada
+Date: 11/19/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: /
+Date: 11/06/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: Toronto/Canada
+Date: 11/20/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: New Buffalo/United States
+Date: 11/22/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: /
+Date: 11/24/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: /
+Date: 11/23/2019
+
+Venue: An Evening with Jason Mraz & Raining Jane
+Location: /
+Date: 11/17/2019
+-----
+node liri.js concert-this paramore
+PARAMORE has 0 upcoming events:
